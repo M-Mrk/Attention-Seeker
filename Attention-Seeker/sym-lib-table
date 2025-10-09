@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "other-custom")(type "KiCad")(uri "${KIPRJMOD}/other-custom.kicad_sym")(options "")(descr ""))
+  (lib (name "ili9341")(type "KiCad")(uri "/home/matze/.local/share/kicad/9.0/symbols/tft_320x240.kicad_sym")(options "")(descr ""))
+)
