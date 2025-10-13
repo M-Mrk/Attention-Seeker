@@ -52,7 +52,36 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "copper_edge_clearance|109250000|87500000|3f279583-5db9-4954-be00-dce82526c308|6adb22e6-9682-4f61-9947-98328349589e",
+          ""
+        ],
+        [
+          "copper_edge_clearance|78750000|87500000|692c3ee6-7c11-4c71-830e-b679f1bad811|71601e0a-4a7c-470a-85b4-867ae11e5fc0",
+          ""
+        ],
+        [
+          "lib_footprint_mismatch|92500000|117500000|620c2fff-309f-464c-8a26-b8ef79d0c4e8|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "lib_footprint_mismatch|94000000|88500000|9567d190-0086-4d04-aba2-759fa8aceafa|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "silk_over_copper|117239600|87948000|af7bdb8a-7f6f-4f76-bd9d-63f83d8017ce|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "silk_over_copper|117239600|89151999|18cc9742-9cf2-4389-9c18-3e0eb2216af8|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "silk_over_copper|129076000|92626513|de7909e4-4ee6-4985-8034-90b90e4c4060|00000000-0000-0000-0000-000000000000",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -133,7 +162,7 @@
         "min_track_width": 0.0,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
