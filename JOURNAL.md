@@ -37,3 +37,11 @@ This is my first bigger pcb design project, so I had to learn the hardware that 
 **Current Schematic**
 ![Attention-Seeker.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTI2OCwicHVyIjoiYmxvYl9pZCJ9fQ==--34acfc6d66a58de421981055249836b42499548d/Attention-Seeker.png)  
 
+## 10/13/2025 - Routed the PCB  
+
+Since the last entry I changed some things. I added a third Keyboard switch, to have even more quick options. I actually did the pcb and routed it and only changed the layout 3 times...
+![output.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTk5MiwicHVyIjoiYmxvYl9pZCJ9fQ==--efbace43c01356155d62ece8f05be885189d7fc4/output.png)
+
+Next up I need to figure the BOM out and source my parts. I could also start with the software, which will need to be run on the pc to gather the notification data...
+  
+
