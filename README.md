@@ -2,7 +2,7 @@
 # Overview
 Yet another desk accessory, but this time it is specialized for alerting you. It acts as a clock, light, macropad, and notification bay.
 
-[front_view](pcb/pictures/front.png) [back_view](pcb/pictures/back.png)
+![front_view](pcb/pictures/front.png) ![back_view](pcb/pictures/back.png)
 
 ### Why?
 I kept missing important notifications when zoning out or concentrating and also needed a desk light, so I built this.
