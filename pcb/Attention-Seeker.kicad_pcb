@@ -405,15 +405,15 @@
 			(uuid "6942941d-d5ab-47a3-a076-042186579292")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_Keyboard.3dshapes/SW_Cherry_MX_1.00u_PCB.step"
+		(model "${KIPRJMOD}/models/kbd-switch/mxstp.stp"
 			(offset
-				(xyz 0 0 0)
+				(xyz -2.5 -5 6)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -909,15 +909,15 @@
 			(uuid "59cbd06a-f177-4c17-95a4-e34f16751e84")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/custom_footprint.pretty/TFT_320x240_touch_r0.step"
+		(model "${KIPRJMOD}/models/screen/LCD_MSP2807_fusion.step"
 			(offset
-				(xyz -25 -2 3)
+				(xyz 0 41 8)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -1194,15 +1194,15 @@
 			(uuid "8e77cb80-3dc3-42e8-b5be-353c8a71d14f")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_Keyboard.3dshapes/SW_Cherry_MX_1.00u_PCB.step"
+		(model "${KIPRJMOD}/models/kbd-switch/mxstp.stp"
 			(offset
-				(xyz 0 0 0)
+				(xyz -2.5 -5 5.5)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -1479,15 +1479,15 @@
 			(uuid "b28072a6-1b6d-45cc-8806-7ca9d74b848a")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_Keyboard.3dshapes/SW_Cherry_MX_1.00u_PCB.step"
+		(model "${KIPRJMOD}/models/kbd-switch/mxstp.stp"
 			(offset
-				(xyz 0 0 0)
+				(xyz -2.5 -5 6)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -1905,15 +1905,15 @@
 			(uuid "5e97a80f-667e-4ab5-a504-a3fee4672687")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Rotary_Encoder.3dshapes/RotaryEncoder_Alps_EC12E-Switch_Vertical_H20mm.step"
+		(model "${KIPRJMOD}/models/rotary-encoder/旋转编码器.STEP"
 			(offset
-				(xyz 0 0 0)
+				(xyz 7.5 -2.5 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -90 -0 -90)
 			)
 		)
 	)
