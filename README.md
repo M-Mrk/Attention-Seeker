@@ -1,6 +1,12 @@
 # Attention-Seeker
 # Overview
-Yet another desk accessory, but this time it is specialized for alerting you. It acts as a clock, light, macropad, and notification bay.
+Yet another desk accessory, but this time it is specialized for alerting you. 
+
+It acts as a: 
+- clock, timer and alarm
+- desk light (dimmable)
+- macropad
+- notification bay
 
 ![front_view](pcb/pictures/front.png) ![back_view](pcb/pictures/back.png)
 
@@ -15,6 +21,11 @@ I kept missing important notifications when zoning out or concentrating and also
 - Buzzer
 - Esp32 s3 DevKitC
 - Python companion app to run alongside on pc
+
+### Examples
+- You get a notification -> Attention-Seeker buzzes and or blinks to show you the contents of the notification
+- You need a reminder in X minutes -> It alerts you after X minutes
+- You need a light -> It has one
 
 # Features
 ## Notifications
@@ -54,3 +65,13 @@ This transistor is pulled High and can only be pulled down by the MCU.
 
 ## Other
 The other hardware is directly hooked up to the MCU
+
+# Stuff to do
+## Casing
+Currently there is no casing 3d model yet, as I would need to first get the pcb and more importantly the components, as many of them have very lacking descriptions and measures.
+
+## Embedded software
+None yet
+
+## Companion app
+There is also currently neither a linux/kde or windows companion app.
