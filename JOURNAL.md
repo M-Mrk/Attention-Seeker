@@ -37,11 +37,25 @@ This is my first bigger pcb design project, so I had to learn the hardware that 
 **Current Schematic**
 ![Attention-Seeker.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTI2OCwicHVyIjoiYmxvYl9pZCJ9fQ==--34acfc6d66a58de421981055249836b42499548d/Attention-Seeker.png)  
 
-## 10/13/2025 - Routed the PCB  
+## 10/13/2025 4 PM - Routed the PCB  
 
 Since the last entry I changed some things. I added a third Keyboard switch, to have even more quick options. I actually did the pcb and routed it and only changed the layout 3 times...
 ![output.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTk5MiwicHVyIjoiYmxvYl9pZCJ9fQ==--efbace43c01356155d62ece8f05be885189d7fc4/output.png)
 
 Next up I need to figure the BOM out and source my parts. I could also start with the software, which will need to be run on the pc to gather the notification data...
   
+
+## 10/13/2025 10 PM - Finished up the pcb  
+
+I rearranged my repo to have more clear division between software and hardware.
+
+I created a real README
+
+I also rendered some pictures of the pcb:
+![front.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjA4MiwicHVyIjoiYmxvYl9pZCJ9fQ==--bda2edc60b9e35f0f85a848c0ce3614684987036/front.png)
+![back.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjA4MywicHVyIjoiYmxvYl9pZCJ9fQ==--16d5a55ab9acb319c2304829daeeae1f727d04b5/back.png)
+
+Added silkscreen descriptions and art (boo!)
+
+And what took the most time, I did the BOM. I hate aliexpress now, why is it so hard to get just the URL and why can you not share the selected option... Well I think I am now ready to certify for the grant to get to building and coding!   
 
