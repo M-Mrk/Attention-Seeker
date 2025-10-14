@@ -59,3 +59,15 @@ Added silkscreen descriptions and art (boo!)
 
 And what took the most time, I did the BOM. I hate aliexpress now, why is it so hard to get just the URL and why can you not share the selected option... Well I think I am now ready to certify for the grant to get to building and coding!   
 
+## 10/14/2025 - Finished up the pcb (x2)  
+
+I realized my footprint for the MCU didnt account for the usb headers like I thought it did... So I had to move it alot further to the edge.
+
+Because of this move I ofcourse had to reroute the pcb, but this time I now have one Ground loop which can not hurt. I also added a wrong 3d model for the MCU, as I cant find a fitting one but this is close enough for the modelling of the case and exchanged the BOM entry for it for a cheaper one.
+
+My first approach for mounting the screen was to solder female headers to the board, but now I think that that would make the screen stick out too much compared to the keys. So I made the holes in the pads larger to directly fit the screen, but now I might need to trim the pins of the MCU and desolder or isolate the sd card slot of the screen.
+
+![back.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjE4NywicHVyIjoiYmxvYl9pZCJ9fQ==--937ad06004395fed149f2458357d132e83a1cb7e/back.png)
+
+The next step will be modelling the case  
+
