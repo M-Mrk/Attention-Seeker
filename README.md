@@ -8,7 +8,7 @@ It acts as a:
 - macropad
 - notification bay
 
-![front_view](pcb/pictures/front.png) ![back_view](pcb/pictures/back.png)
+![front_view](pcb/pictures/front.png) ![semi_assembled](case/complete.png)
 
 ### Why?
 I kept missing important notifications when zoning out or concentrating and also needed a desk light, so I built this.
@@ -66,10 +66,10 @@ This transistor is pulled High and can only be pulled down by the MCU.
 ## Other
 The other hardware is directly hooked up to the MCU
 
-# Stuff to do
-## Casing
-Currently there is no casing 3d model yet, as I would need to first get the pcb and more importantly the components, as many of them have very lacking descriptions and measures.
+# Assembly
+See [assembly guide](assembly.md)
 
+# Stuff to do
 ## Embedded software
 None yet
 
