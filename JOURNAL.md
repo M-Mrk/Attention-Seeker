@@ -71,3 +71,26 @@ My first approach for mounting the screen was to solder female headers to the bo
 
 The next step will be modelling the case  
 
+## 10/15/2025 - Created V1 of the case  
+
+In the last 2.8h I created the first iteration of the case for Attention-Seeker. I exported the PCB directly as a step from kicad into fusion 360 and went from there. 
+
+The case is split up into 3 parts. The front case, back case and foot. 
+
+![Screenshot 2025-10-15 122358.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjM3MSwicHVyIjoiYmxvYl9pZCJ9fQ==--27aaeb3c0dc52d1304a20e78a337978ae390fd43/Screenshot%202025-10-15%20122358.png)
+This picture shows back case and foot. The foot glues into the back case, so that the back case can easily be 3d printed. 
+
+The PCB will slide into the back case:
+![Screenshot 2025-10-15 122348.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjM3NCwicHVyIjoiYmxvYl9pZCJ9fQ==--18c9172a06ea9346be69711b8a2d06527ac2804a/Screenshot%202025-10-15%20122348.png)
+
+And then the top part will snap fit onto the back case:
+![Screenshot 2025-10-15 122324.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjM3NSwicHVyIjoiYmxvYl9pZCJ9fQ==--ea31550f6fe32dd60f612d41367b5050a216b289/Screenshot%202025-10-15%20122324.png)
+I also designed the knob with the weird curling.
+
+Additionally I also updated the repo with a new assembly.md and an assembly section in the ReadMe.
+
+I think that I now do not have anything left to do without the actual hardware, so shipping time it is!
+
+
+  
+
