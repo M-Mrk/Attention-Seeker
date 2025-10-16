@@ -4,17 +4,17 @@ U1,1,TFT_320x240,,,,custom_footprint:TFT-320x240,,"4,89€",without touch-2.8,ht
 "JP1,JP2",2,SolderJumper_2_Open,,Excluded from BOM,,Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm,~,,,
 SW1,1,RotaryEncoder_Switch,,,,Rotary_Encoder:RotaryEncoder_Alps_EC12E-Switch_Vertical_H20mm,~,"0,99€",,https://de.aliexpress.com/item/1005006582140027.html
 /,3,Keycaps,,,Excluded from Board,None,,"2,35€",Orange/5pcs,https://de.aliexpress.com/item/1005008795444732.html
-U3,1,IRLML2502TRPBF,,,,IRLML2502TRPBF:SOT23,,"1,69€",,https://de.aliexpress.com/item/1005007167326707.html
+U3,1,IRLML2502TRPBF,,,,IRLML2502TRPBF:SOT23,,"0,25€",,https://www.reichelt.de/de/de/shop/produkt/mosfet_n-ch_20v_4_2a_0_045r_sot-23-108737
 U2,1,ESP32-S3-DevKitC,,,,Espressif:ESP32-S3-DevKitC,,"6,99€",N16R8 CP2102,https://de.aliexpress.com/item/1005007319706057.html
 BZ1,1,Buzzer,,,,Buzzer_Beeper:Buzzer_12x9.5RM7.6,~,"1,25€",,https://de.aliexpress.com/item/1005006132874712.html
-Q1,1,BSS84,,,,Package_TO_SOT_SMD:SOT-23,http://assets.nexperia.com/documents/data-sheet/BSS84.pdf,"1,99€",BSS84,https://de.aliexpress.com/item/32811791323.html
+Q1,1,BSS84,,,,Package_TO_SOT_SMD:SOT-23,http://assets.nexperia.com/documents/data-sheet/BSS84.pdf,"0,05€",,https://www.reichelt.de/de/de/shop/produkt/mosfet_p-ch_-60v_-0_17a_8r_sot-23-309523
 U4,1,AMS1117-3.3,,,,Package_TO_SOT_SMD:SOT-223-3_TabPin2,http://www.advanced-monolithic.com/pdf/ds1117.pdf,"1,59€",AMS1117-3.3,https://de.aliexpress.com/item/1005002487704059.html
-R3,1,3R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,See R1,,
+R3,1,3R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,02€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_3_3_ohm_250_mw_5_-250355
 D1,1,38mm rigid LED filament,,,,custom_footprint:38mm rigid LED filament,~,"1,19€",2200K Warm Yellow/38mm DC3V 10pcs,https://de.aliexpress.com/item/1005007278852273.html
-R1,1,220R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"2,49€",1206 720PCS 36Values,https://de.aliexpress.com/item/1005005671741256.html
-C1,1,10µC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,"3,65€",1206 16Value 320PCS,https://de.aliexpress.com/item/1005008072258233.html
-R2,1,10KR,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,See R1,,
-"R4,R6",2,100R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,See R2,,
-C2,1,100nC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,See C1,,
-R5,1,100KR,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,See R3,,
+R1,1,220R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,02€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_220_ohm_250_mw_1_-346660
+C1,1,10µC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,"0,04€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_10_f_25_v_-10_x5r-409266
+R2,1,10KR,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,02€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_10_kohm_250_mw_1_-346640
+"R4,R6",2,100R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,04€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_100_ohm_250_mw_1_-346639
+C2,1,100nC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,"0,04€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_100_nf_100_v_-10_x7r-409241
+R5,1,100KR,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,08€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_10_f_25_v_-10_x5r-409266
 PCB (JLCPCB),5,PCB,,,Excluded from Board,None,,"4,70€","LeadFree HASL, Black(no price change)",
