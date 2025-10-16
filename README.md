@@ -1,77 +1,76 @@
 # Attention-Seeker
-# Overview
-Yet another desk accessory, but this time it is specialized for alerting you. 
+## Overview
+A multifunctional desk peripheral designed to display and alert you to notifications.
 
-It acts as a: 
-- clock, timer and alarm
-- desk light (dimmable)
-- macropad
-- notification bay
+Attention-Seeker receives notifications from a companion app and displays them on its 2.8" color screen, with optional visual and audible alerts. It also features a rotary encoder and three mechanical keyboard switches for user input (no touch!).
 
-![front_view](pcb/pictures/front.png) ![semi_assembled](case/complete.png)
+In addition to notification-related features, it functions as a **clock**, **alarm**, **timer**, **desk light**, and **macropad**.
+
+![Front View](pcb/pictures/front.png) ![Semi-Assembled](case/complete.png)
 
 ### Why?
-I kept missing important notifications when zoning out or concentrating and also needed a desk light, so I built this.
+I often missed important notifications while zoning out or concentrating and also needed a desk light, so I built this.
 
 ### How?
-- 2.8" TFT Screen
-- 3 keyboard switches
-- Rotary encoder 
+- 2.8" TFT screen
+- 3 mechanical keyboard switches
+- Rotary encoder
 - Rigid LED filament
 - Buzzer
-- Esp32 s3 DevKitC
-- Python companion app to run alongside on pc
+- ESP32-S3 DevKitC N16R8 CP2102
+- Python companion app to run on a PC
 
-### Examples
-- You get a notification -> Attention-Seeker buzzes and or blinks to show you the contents of the notification
-- You need a reminder in X minutes -> It alerts you after X minutes
-- You need a light -> It has one
+### Example Use Cases
+- **Notification:** Attention-Seeker buzzes, blinks, and displays the message.
+- **Reminder:** Set a timer for X minutes, and it alerts you when time is up.
+- **Desk Light:** Toggle and dim the built-in LED for illumination.
 
-# Features
-## Notifications
-Alerts you to new notifications, via buzzing and blinking and shows you its details.
-These are sent via the companion app.
+## Features
 
-## Clock
-- Time
-- Timer
-- Alarm
-- Synced via companion
+### Notifications
+Displays incoming notifications sent by the companion app with optional blinking or buzzing.
 
-## Navigation
-- Kbd Switches for on page actions
-- Rotary encoder turning for switching pages
+### Clock
+- Displays time
+- Timer functionality
+- Alarm support
+- Synced via the companion app
 
-## Other
-- Dimmable light
-- Buzzer
+### Navigation
+- Mechanical keyboard switches for on-page actions
+- Rotary encoder for switching between pages
 
-# Hardware
-## MCU
-The ESP32-S3 might be overkill, but it is a good fit for the number of pixels on the screen, allowing us to quickly switch pages.
-Almost all pins are used as the SPI interface of the screen already takes the majority of pins.
+### Other Features
+- Dimmable desk light
+- Buzzer for alerts
 
-## (Back)Light
-As both lights draw far more current than the GPIO of the MCU can reliably handle, transistors and an LDO are needed.
+## Hardware
 
-### LED filament
-The 3V filament draws about 100mA, so another 5V to 3.3V LDO is needed to drive it.
-Then an N-channel MOSFET drives the negative side of the LED filament.
+### MCU
+The ESP32-S3 might be overkill but is ideal for handling the screen's pixel density, enabling fast page switching. Almost all pins are utilized, as the SPI interface for the screen consumes the majority of them.
 
-### Backlight
-When creating the PCB, I didn't know how much current the backlight would draw,
-so I also placed a transistor between it and the MCU to be safe.
-This transistor is pulled High and can only be pulled down by the MCU.
+### Lighting
 
-## Other
-The other hardware is directly hooked up to the MCU
+#### LED Filament
+The 3V filament draws about 100mA, requiring a 5V-to-3.3V LDO for power. An N-channel MOSFET drives the negative side of the LED filament.
 
-# Assembly
-See [assembly guide](assembly.md)
+#### Backlight
+The backlight's current draw was uncertain during PCB design, so a transistor was added between it and the MCU for safety. This transistor is pulled high and can only be pulled low by the MCU.
 
-# Stuff to do
-## Embedded software
-None yet
+### Other Components
+All remaining components (switches, encoder, buzzer) are directly connected to the MCU.
 
-## Companion app
-There is also currently neither a linux/kde or windows companion app.
+# Getting started
+## Assembly
+Take a look at the [assembly guide](assembly.md)
+
+## Installation
+Install the companion app from the releases section ([guide](companion.md)).
+
+# To-Do List
+
+## Embedded Software
+- None yet.
+
+## Companion App
+- No Linux/KDE or Windows companion app is available yet.
