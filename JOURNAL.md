@@ -94,3 +94,11 @@ I think that I now do not have anything left to do without the actual hardware, 
 
   
 
+## 10/16/2025 - Redid the README  
+
+Firstly I fixed the issue of the case missing a hole for the USB cable. Then I retook the case pictures without the grid. I also forgot to upload the 3mf file for the rotary knob, which is now also fixed
+
+![complete.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjQ2NywicHVyIjoiYmxvYl9pZCJ9fQ==--c8d1de14b44de727e2cb2fd6d3757afafd250e6a/complete.png)
+
+Lastly I redid the README to make it more clear and separated it into more logical sections, as well as added placeholder markdown guides for the assembly and companion app.  
+
