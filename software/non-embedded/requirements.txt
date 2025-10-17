@@ -1,0 +1,8 @@
+future==1.0.0
+iso8601==2.1.0
+pyserial==3.5
+PySide6==6.10.0
+PySide6_Addons==6.10.0
+PySide6_Essentials==6.10.0
+PyYAML==6.0.3
+shiboken6==6.10.0
