@@ -12,9 +12,8 @@ U4,1,AMS1117-3.3,,,,Package_TO_SOT_SMD:SOT-223-3_TabPin2,http://www.advanced-mon
 R3,1,3R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,02€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_3_3_ohm_250_mw_5_-250355
 D1,1,38mm rigid LED filament,,,,custom_footprint:38mm rigid LED filament,~,"1,19€",2200K Warm Yellow/38mm DC3V 10pcs,https://de.aliexpress.com/item/1005007278852273.html
 R1,1,220R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,02€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_220_ohm_250_mw_1_-346660
-C1,1,10µC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,"0,04€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_10_f_25_v_-10_x5r-409266
+"C1, C2",2,10µC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,"0,08€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_10_f_25_v_-10_x5r-409266
 R2,1,10KR,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,02€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_10_kohm_250_mw_1_-346640
 "R4,R6",2,100R,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,04€",,https://www.reichelt.de/de/de/shop/produkt/smd-widerstand_1206_100_ohm_250_mw_1_-346639
-C2,1,100nC,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,~,"0,04€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_100_nf_100_v_-10_x7r-409241
 R5,1,100KR,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,~,"0,08€",,https://www.reichelt.de/de/de/shop/produkt/mlcc_1206_10_f_25_v_-10_x5r-409266
 PCB (JLCPCB),5,PCB,,,Excluded from Board,None,,"4,70€","LeadFree HASL, Black(no price change)",
