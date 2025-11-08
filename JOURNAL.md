@@ -6,10 +6,6 @@
   ==================================================================
 -->
 
-This is my journal of the design and building process of **Attention Seeker**.  
-You can view this journal in more detail on **Hack Club Blueprint** [here](https://blueprint.hackclub.com/projects/83).
-
-
 ## 10/9/2025 - Designed Idea and Schematic  
 
 In the last around 7 hours I came up with the general idea from hackpad to just a screen to now a combination of both. These changes came with a lot of hardware changes (I think I changed my MCU 3 times).
@@ -101,4 +97,22 @@ Firstly I fixed the issue of the case missing a hole for the USB cable. Then I r
 ![complete.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjQ2NywicHVyIjoiYmxvYl9pZCJ9fQ==--c8d1de14b44de727e2cb2fd6d3757afafd250e6a/complete.png)
 
 Lastly I redid the README to make it more clear and separated it into more logical sections, as well as added placeholder markdown guides for the assembly and companion app.  
+
+## 11/8/2025 - Build the thing!  
+
+# Getting stuff ordered
+The first problem was that I somehow got so lucky as to have shipped this in between some backend stuff, so my project was lost and someone had to re-add my project to the grant queue. This already took a week.
+
+But then I could finally order all the parts and the pcb itself, which all arrived around 2 weeks after ordering them.
+
+# Building it!
+![IMG_4241](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTE2NiwicHVyIjoiYmxvYl9pZCJ9fQ==--72935d357790131a01d9ee5bbd9d359b64fd75d0/IMG_4241.jpeg)
+This was my first time smd soldering, as you can probably see. But still I think I prefer smd over tht as it seems quicker. The longest part was soldering the dozens of pins from the MCU and display, but now that it is finished I am happy with the result.
+![IMG_4244](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTE2NywicHVyIjoiYmxvYl9pZCJ9fQ==--248a4891c4359719cfca9f2e75dd794bae51b01e/IMG_4244.jpeg)
+![IMG_4243](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTE2OCwicHVyIjoiYmxvYl9pZCJ9fQ==--9c289ab0bed9b72d2a9badee7a2683adaf29fccf/IMG_4243.jpeg)
+
+# Basic testing
+I used some examples from various libraries and can confirm that everything I tested works!
+![IMG_4247](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTI3OSwicHVyIjoiYmxvYl9pZCJ9fQ==--2d08965258009bb559e46f74490bcaf9a77a8803/IMG_4247.jpeg)
+  
 
