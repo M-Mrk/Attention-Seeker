@@ -116,3 +116,18 @@ I used some examples from various libraries and can confirm that everything I te
 ![IMG_4247](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTI3OSwicHVyIjoiYmxvYl9pZCJ9fQ==--2d08965258009bb559e46f74490bcaf9a77a8803/IMG_4247.jpeg)
   
 
+## 11/9/2025 - Learned stuff and failed the UI controller  
+
+# Installation
+At first I had to learn how to setup plattformIO and needed to configure it for the esp32-s3-devkitc-n16r8. The next hoop was figuring out linux usb permissions which were easy enough but got me stuck on the serial monitor for a while, as I first temporarily made my user owner of the port, which allowed uploading, but the Serial monitor didnt work reliably for some reason. After I added my user to the uucp and logged in and out everything worked.
+
+# Libraries
+The next step was to further test my components on PIO and choose an appropriate library for the display. I first tried tft_espi but quickly got frustrated with the user_setup.h file (skill issue) so I switched to the easier adafruit gfx, which worked great.
+
+# C++ OOP
+I had experience with C++ and other OOP languages before, but not C++ OOP, so I had to take a small excourse to learn that. I then wanted to build something, like this sketch
+![sketch](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTcwMSwicHVyIjoiYmxvYl9pZCJ9fQ==--1fb4f36a9cfc66ad23cca65fe213bf551e06d636/sketch.png)
+
+I was not fluent enough in C++ for this so I did take some help from AI. This worked at first but as soon as I used any variables it would compile but the MCU would always panic at drawing (which was a first to me). So I think I will rebuild it less abstract and with more familiar methods.
+  
+
