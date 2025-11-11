@@ -1,28 +1,121 @@
 #include "screens/TimeScreen.h"
-#include <Adafruit_GFX.h>
-#include <Adafruit_ILI9341.h>
+//#include "fonts/FreeSerif18pt7b.h"
 
-void TimeScreen::init() {
-    Serial.println("Time screen started");
-}
+#include <ESP32Time.h>
 
-void TimeScreen::draw() {
-    Serial.println("[Time: 12:45 PM]");
-    if (display_) {
-        display_->fillScreen(ILI9341_BLACK);
-        display_->setTextColor(ILI9341_GREEN);
-        display_->setTextSize(3);
-        display_->setCursor(10, 100);
-        display_->print("12:45");
-        display_->setTextSize(2);
-        display_->print(" PM");
+int lastMinutes = -1;
+int lastDay = -1;
+
+static bool timeRedraw = true;
+static bool dateRedraw = true;
+
+String hoursText = "00:00";
+String dateText = "01/01/2000";
+TaskHandle_t timeUpdateTaskHandle = nullptr;
+
+void updateTimeTask(void *pvParameters)
+{
+    TimeScreen *timeScreen = static_cast<TimeScreen *>(pvParameters);
+    for (;;)
+    {
+        timeScreen->updateTime();
+        Serial.println("Time updated");
+        vTaskDelay(pdMS_TO_TICKS(60000)); // Update every minute
     }
 }
 
-void TimeScreen::end() {
-    Serial.println("Time screen closed");
+void TimeScreen::init(TFT_eSPI *display)
+{
+    display->fillScreen(0x0);
+    timeRedraw = true;
+    dateRedraw = true;
+
+    lastMinutes = -1;
+    lastDay = -1;
+    updateTime();
+
+    xTaskCreatePinnedToCore(
+        updateTimeTask,
+        "TimeUpdateTask",
+        2048,
+        this,
+        1,
+        &timeUpdateTaskHandle,
+        1);
 }
 
-void TimeScreen::input(INPUT_EVENT input) {
+void TimeScreen::draw(TFT_eSPI *display)
+{
+    if (display)
+    {
+        if (!timeRedraw && !dateRedraw)
+            return;
+
+        if (timeRedraw)
+        {
+            display->fillRect(39, 91, 239, 83, 0x0);
+
+            display->setTextColor(0xFFFF);
+            display->setTextSize(3);
+            display->setTextWrap(false);
+            display->setFreeFont(&FreeSerif18pt7b);
+            display->setCursor(41, 166);
+            display->print(hoursText);
+            timeRedraw = false;
+        }
+
+        if (dateRedraw)
+        {
+            display->fillRect(77, 40, 173, 33, 0x0);
+
+            display->setTextSize(1);
+            display->setCursor(83, 67);
+            display->print(dateText);
+            dateRedraw = false;
+        }
+    }
+    else
+    {
+        Serial.println("Display pointer is null!");
+    }
+}
+
+void TimeScreen::handleInput(INPUT_EVENT input)
+{
     // No input handling for now
+}
+
+void TimeScreen::end()
+{
+    vTaskDelete(timeUpdateTaskHandle);
+}
+
+void TimeScreen::updateTime()
+{
+    ESP32Time rtc;
+    int minutes = rtc.getMinute();
+
+    if (minutes == lastMinutes)
+        return;
+    lastMinutes = minutes;
+    timeRedraw = true;
+
+    int hours = rtc.getHour(true);
+
+    char buffer[6];
+    snprintf(buffer, sizeof(buffer), "%02d:%02d", hours, minutes);
+    hoursText = String(buffer);
+
+    int day = rtc.getDay();
+    if (day == lastDay)
+        return;
+    lastDay = day;
+    dateRedraw = true;
+
+    int month = rtc.getMonth();
+    int year = rtc.getYear();
+
+    char dateBuffer[12];
+    snprintf(dateBuffer, sizeof(dateBuffer), "%02d/%02d/%04d", day, month, year);
+    dateText = String(dateBuffer);
 }

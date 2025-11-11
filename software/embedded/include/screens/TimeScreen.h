@@ -1,14 +1,18 @@
-#ifndef TIME_SCREEN_H
-#define TIME_SCREEN_H
+#ifndef TIMESCREEN_H
+#define TIMESCREEN_H
 
+#include <TFT_eSPI.h>
 #include "../Screen.h"
 
 class TimeScreen : public Screen {
 public:
-    void init();
-    void draw();
-    void end();
-    void input(INPUT_EVENT input);
+    TimeScreen(){}
+    
+    void init(TFT_eSPI* display) override;
+    void draw(TFT_eSPI* display) override;
+    void handleInput(INPUT_EVENT inp) override;
+    void end() override;
+    void updateTime();
 };
 
 #endif

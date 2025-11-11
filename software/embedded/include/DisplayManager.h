@@ -1,23 +1,25 @@
-#ifndef DISPLAYMANAGER_H
-#define DISPLAYMANAGER_H
+#ifndef DISPLAY_MANAGER_H
+#define DISPLAY_MANAGER_H
 
-#include <Adafruit_ILI9341.h>
+#include <TFT_eSPI.h>
 #include "Screen.h"
 
 class DisplayManager {
 private:
-    Adafruit_ILI9341 display;  // Display object as member variable
-    Screen* screens[5];
-    int numScreens;
-    Screen* activeScreen;
-
+    TFT_eSPI* display;
+    Screen* currentScreen;
+    
 public:
     DisplayManager();
+    
     void init();
-    void addScreen(Screen* screen);
-    void switchTo(int index);
-    Screen* current();
-    Adafruit_ILI9341* getDisplay() { return &display; }
+    void setScreen(Screen* newScreen);
+    void draw();
+    void handleInput(INPUT_EVENT event);
+    void setBrightness(int level);
+    
+    // Get display pointer if needed elsewhere
+    TFT_eSPI* getDisplay() { return display; }
 };
 
 #endif

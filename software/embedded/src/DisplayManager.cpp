@@ -1,40 +1,59 @@
 #include <Arduino.h>
 #include "pins.h"
 
-#include <Adafruit_ILI9341.h>
+#include <TFT_eSPI.h>
 
+#include "Screen.h"
 #include "DisplayManager.h"
 
-DisplayManager::DisplayManager() : display(TFT_CS, TFT_DC, TFT_MOSI, TFT_CLK, TFT_RST, TFT_MISO) {
-    numScreens = 0;
-    activeScreen = nullptr;
+DisplayManager::DisplayManager()
+{
+    display = new TFT_eSPI();
+    currentScreen = nullptr;
 }
 
-void DisplayManager::addScreen(Screen* screen) {
-    if (numScreens < 5) {
-    screens[numScreens] = screen;
-    // Provide the screen with the display instance
-    screen->setDisplay(&display);
-        numScreens++;
+void DisplayManager::init()
+{
+    display->begin();
+    display->setRotation(3);
+    pinMode(BACKLIGHT_PIN, OUTPUT);
+    analogWriteFrequency(2000);
+    setBrightness(125);
+}
+
+void DisplayManager::setScreen(Screen *newScreen)
+{
+    if (currentScreen != nullptr)
+    {
+        currentScreen->end();
+    }
+
+    currentScreen = newScreen;
+    if (currentScreen != nullptr)
+    {
+        display->fillScreen(0x0); // Clear screen before switching
+        currentScreen->init(display);
     }
 }
 
-void DisplayManager::switchTo(int index) {
-    if (index >= 0 && index < numScreens) {
-        if (activeScreen != nullptr) {
-            activeScreen->end();
-        }
-        activeScreen = screens[index];
-        activeScreen->init();
+void DisplayManager::draw()
+{
+    if (currentScreen != nullptr)
+    {
+        currentScreen->draw(display);
     }
 }
 
-Screen* DisplayManager::current() {
-    return activeScreen;
+void DisplayManager::handleInput(INPUT_EVENT event)
+{
+    if (currentScreen != nullptr)
+    {
+        currentScreen->handleInput(event);
+    }
 }
 
-void DisplayManager::init() {
-    display.begin();
-    display.setRotation(3);
-    display.fillScreen(ILI9341_BLACK);
+void DisplayManager::setBrightness(int level)
+{
+    level = constrain(level, 0, 255);
+    analogWrite(BACKLIGHT_PIN, level);
 }
