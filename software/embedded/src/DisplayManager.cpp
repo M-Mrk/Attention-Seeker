@@ -17,7 +17,7 @@ void DisplayManager::init()
     display->begin();
     display->setRotation(3);
     pinMode(BACKLIGHT_PIN, OUTPUT);
-    analogWriteFrequency(2000);
+    analogWriteFrequency(15000); // set frequency to reduce seeable flicker
     setBrightness(125);
 }
 
@@ -46,9 +46,11 @@ void DisplayManager::draw()
 
 void DisplayManager::handleInput(INPUT_EVENT event)
 {
+    Serial.print("Input event received: ");
+    Serial.println(static_cast<int>(event));
     if (currentScreen != nullptr)
     {
-        currentScreen->handleInput(event);
+        // currentScreen->handleInput(event);
     }
 }
 

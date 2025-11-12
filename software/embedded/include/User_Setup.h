@@ -4,6 +4,8 @@
 // See SetupX_Template.h for all options available
 #define ILI9341_DRIVER
 
+#define DISABLE_ALL_LIBRARY_WARNINGS // To suppress warnings about missing TOUCH_CS
+
                     // Typical board default pins - change to match your board
 #define TFT_CS   10 //     10 or 34 (FSPI CS0) 
 #define TFT_MOSI 11 //     11 or 35 (FSPI D)
@@ -13,8 +15,6 @@
 // Use pins in range 0-31
 #define TFT_DC    9
 #define TFT_RST   8
-
-//#define TOUCH_CS 16 // Optional for touch screen
 
 #define LOAD_GLCD
 #define LOAD_FONT2

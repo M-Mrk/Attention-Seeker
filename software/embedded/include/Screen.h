@@ -4,12 +4,13 @@
 #include <TFT_eSPI.h>
 
 enum INPUT_EVENT{
-    SW1 = 0,
-    SW2 = 1,
-    SW3 = 2,
-    SW4 = 3,
-    ROTARY_CW = 4,
-    ROTARY_CCW = 5
+    NONE,
+    SW1,
+    SW2,
+    SW3,
+    SW4,
+    ROTARY_CW,
+    ROTARY_CCW
 };
 
 class Screen {
@@ -24,7 +25,9 @@ public:
     virtual void draw(TFT_eSPI* display) = 0;
 
     // Optional: handle button presses or other input
-    virtual void handleInput(INPUT_EVENT event) {}
+    virtual INPUT_EVENT handleInput(INPUT_EVENT input) {
+        return input;
+    }
 
     // Optional: called when switching away from this screen
     virtual void end() {}

@@ -1,5 +1,4 @@
 #include "screens/TimeScreen.h"
-//#include "fonts/FreeSerif18pt7b.h"
 
 #include <ESP32Time.h>
 
@@ -78,11 +77,6 @@ void TimeScreen::draw(TFT_eSPI *display)
     {
         Serial.println("Display pointer is null!");
     }
-}
-
-void TimeScreen::handleInput(INPUT_EVENT input)
-{
-    // No input handling for now
 }
 
 void TimeScreen::end()

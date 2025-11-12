@@ -3,23 +3,31 @@
 
 #include "pins.h"
 
+// Display
 #include "DisplayManager.h"
 #include "screens/TimeScreen.h"
-
-ESP32Time rtc(3600);
-
+#include "screens/SettingsScreen.h"
 
 DisplayManager displayManager;
 TimeScreen timeScreen;
-TFT_eSPI tft = TFT_eSPI();
+SettingsScreen settingsScreen;
+
+ESP32Time rtc(3600);
+
+// Input
+#include "physicalInput.h"
 
 void displayDrawTask(void *pvParameters) {
+    QueueHandle_t inputQueue = static_cast<QueueHandle_t>(pvParameters);
     for (;;) {
+        INPUT_EVENT event;
+        if (xQueueReceive(inputQueue, &event, 0)) {
+            displayManager.handleInput(event);
+        }
         displayManager.draw();
         vTaskDelay(pdMS_TO_TICKS(16)); // Approx ~60 FPS
     };
 };
-
 
 void aliveTask(void *pvParameters) {
     for (;;) {
@@ -28,19 +36,26 @@ void aliveTask(void *pvParameters) {
     }
 };
 
+QueueHandle_t inputQueue;
+
 void setup(void)
 {
     Serial.begin(115200);
     Serial.println("Attention Seeker starting...");
 
+    // Input
+    inputQueue = xQueueCreate(10, sizeof(INPUT_EVENT));
+    initInputs();
+    startInputTasks(inputQueue);
+
     // Display
     displayManager.init();
-    displayManager.setScreen(&timeScreen);
+    displayManager.setScreen(&settingsScreen);
     xTaskCreatePinnedToCore( // Start display drawing task
         displayDrawTask,
         "DisplayDrawTask",
         4096,
-        nullptr,
+        inputQueue,
         1,
         nullptr,
         1
