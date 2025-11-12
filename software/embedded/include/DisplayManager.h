@@ -4,22 +4,31 @@
 #include <TFT_eSPI.h>
 #include "Screen.h"
 
-class DisplayManager {
+class DisplayManager
+{
 private:
-    TFT_eSPI* display;
-    Screen* currentScreen;
-    
+    TFT_eSPI *display;
+    Screen *currentScreen;
+    int currentScreenIndex;
+    static const int MAX_SCREENS = 2;
+    Screen *screens[MAX_SCREENS];
+    int brightness;
+
 public:
     DisplayManager();
-    
+
     void init();
-    void setScreen(Screen* newScreen);
+    void registerScreen(Screen *screen, int index);
+    void setScreen(int index);
     void draw();
-    void handleInput(INPUT_EVENT event);
+    void handleInput(InputEvent event); // pass to current screen or automatically switch screens
     void setBrightness(int level);
-    
+    int getBrightness() { return brightness; }
+
     // Get display pointer if needed elsewhere
-    TFT_eSPI* getDisplay() { return display; }
+    TFT_eSPI *getDisplay() { return display; }
 };
+
+extern DisplayManager displayManager; // make instance available globally
 
 #endif

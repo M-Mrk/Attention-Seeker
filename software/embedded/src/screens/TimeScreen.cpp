@@ -2,16 +2,6 @@
 
 #include <ESP32Time.h>
 
-int lastMinutes = -1;
-int lastDay = -1;
-
-static bool timeRedraw = true;
-static bool dateRedraw = true;
-
-String hoursText = "00:00";
-String dateText = "01/01/2000";
-TaskHandle_t timeUpdateTaskHandle = nullptr;
-
 void updateTimeTask(void *pvParameters)
 {
     TimeScreen *timeScreen = static_cast<TimeScreen *>(pvParameters);
@@ -52,12 +42,12 @@ void TimeScreen::draw(TFT_eSPI *display)
 
         if (timeRedraw)
         {
-            display->fillRect(39, 91, 239, 83, 0x0);
+            display->fillRect(39, 91, 245, 83, 0x0);
 
             display->setTextColor(0xFFFF);
             display->setTextSize(3);
             display->setTextWrap(false);
-            display->setFreeFont(&FreeSerif18pt7b);
+            display->setFreeFont(&FreeSerif18pt7b); // ignore error. Font is included in TFT_eSPI
             display->setCursor(41, 166);
             display->print(hoursText);
             timeRedraw = false;

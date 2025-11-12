@@ -5,6 +5,15 @@
 #include "../Screen.h"
 
 class TimeScreen : public Screen {
+private:
+    int lastMinutes;
+    int lastDay;
+    bool timeRedraw;
+    bool dateRedraw;
+    String hoursText;
+    String dateText;
+    TaskHandle_t timeUpdateTaskHandle = nullptr;
+
 public:
     TimeScreen(){}
     

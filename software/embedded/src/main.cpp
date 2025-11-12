@@ -17,11 +17,14 @@ ESP32Time rtc(3600);
 // Input
 #include "physicalInput.h"
 
-void displayDrawTask(void *pvParameters) {
+void displayDrawTask(void *pvParameters)
+{
     QueueHandle_t inputQueue = static_cast<QueueHandle_t>(pvParameters);
-    for (;;) {
-        INPUT_EVENT event;
-        if (xQueueReceive(inputQueue, &event, 0)) {
+    for (;;)
+    {
+        InputEvent event;
+        if (xQueueReceive(inputQueue, &event, 0))
+        {
             displayManager.handleInput(event);
         }
         displayManager.draw();
@@ -29,8 +32,10 @@ void displayDrawTask(void *pvParameters) {
     };
 };
 
-void aliveTask(void *pvParameters) {
-    for (;;) {
+void aliveTask(void *pvParameters)
+{
+    for (;;)
+    {
         Serial.println("Alive");
         vTaskDelay(pdMS_TO_TICKS(5000));
     }
@@ -44,13 +49,17 @@ void setup(void)
     Serial.println("Attention Seeker starting...");
 
     // Input
-    inputQueue = xQueueCreate(10, sizeof(INPUT_EVENT));
+    inputQueue = xQueueCreate(10, sizeof(InputEvent));
     initInputs();
     startInputTasks(inputQueue);
 
     // Display
     displayManager.init();
-    displayManager.setScreen(&settingsScreen);
+    // register screens and select settings screen
+    displayManager.registerScreen(&timeScreen, 0);
+    displayManager.registerScreen(&settingsScreen, 1);
+    // use registered index for initial screen (if registration failed idxSettings may be -1)
+    displayManager.setScreen(0);
     xTaskCreatePinnedToCore( // Start display drawing task
         displayDrawTask,
         "DisplayDrawTask",
@@ -58,8 +67,7 @@ void setup(void)
         inputQueue,
         1,
         nullptr,
-        1
-    );
+        1);
 
     // RTC
     rtc.setTime(30, 24, 15, 17, 1, 2021); // 15:24:30 17.01.2021
@@ -73,8 +81,7 @@ void setup(void)
         nullptr,
         1,
         nullptr,
-        1
-    );
+        1);
 
     Serial.println("Attention Seeker initialized");
 }

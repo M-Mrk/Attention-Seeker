@@ -10,6 +10,12 @@ DisplayManager::DisplayManager()
 {
     display = new TFT_eSPI();
     currentScreen = nullptr;
+
+    // initialize registry
+    for (int i = 0; i < MAX_SCREENS; ++i)
+    {
+        screens[i] = nullptr;
+    }
 }
 
 void DisplayManager::init()
@@ -21,8 +27,37 @@ void DisplayManager::init()
     setBrightness(125);
 }
 
-void DisplayManager::setScreen(Screen *newScreen)
+// register screen at index
+void DisplayManager::registerScreen(Screen *screen, int index)
 {
+    if (index < 0 || index >= MAX_SCREENS)
+    {
+        Serial.print("registerScreen: invalid index ");
+        Serial.println(index);
+        return;
+    }
+    screens[index] = screen;
+}
+
+// set screen at index to active screen and initialize it
+void DisplayManager::setScreen(int index)
+{
+    if (index < 0 || index >= MAX_SCREENS)
+    {
+        Serial.print("setScreen: invalid index ");
+        Serial.println(index);
+        return;
+    }
+
+    currentScreenIndex = index;
+    Screen *newScreen = screens[index];
+    if (newScreen == nullptr)
+    {
+        Serial.print("setScreen: no screen registered at index ");
+        Serial.println(index);
+        return;
+    }
+
     if (currentScreen != nullptr)
     {
         currentScreen->end();
@@ -44,18 +79,42 @@ void DisplayManager::draw()
     }
 }
 
-void DisplayManager::handleInput(INPUT_EVENT event)
+// handle input event or switch screens
+void DisplayManager::handleInput(InputEvent event)
 {
     Serial.print("Input event received: ");
     Serial.println(static_cast<int>(event));
     if (currentScreen != nullptr)
     {
-        // currentScreen->handleInput(event);
+        event = currentScreen->handleInput(event);
+        if (event == InputEvent::RotaryCw)
+        {
+            if (currentScreenIndex + 1 < MAX_SCREENS)
+            {
+                setScreen(currentScreenIndex + 1);
+            }
+            else
+            {
+                setScreen(0); // wrap around
+            }
+        }
+        else if (event == InputEvent::RotaryCcw)
+        {
+            if (currentScreenIndex - 1 >= 0)
+            {
+                setScreen(currentScreenIndex - 1);
+            }
+            else
+            {
+                setScreen(MAX_SCREENS - 1); // wrap around
+            }
+        }
     }
 }
 
 void DisplayManager::setBrightness(int level)
 {
     level = constrain(level, 0, 255);
-    analogWrite(BACKLIGHT_PIN, level);
+    brightness = level;
+    analogWrite(BACKLIGHT_PIN, brightness);
 }
