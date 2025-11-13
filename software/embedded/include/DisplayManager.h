@@ -13,6 +13,7 @@ private:
     static const int MAX_SCREENS = 2;
     Screen *screens[MAX_SCREENS];
     int brightness;
+    bool errorShown = false;
 
 public:
     DisplayManager();
@@ -24,6 +25,7 @@ public:
     void handleInput(InputEvent event); // pass to current screen or automatically switch screens
     void setBrightness(int level);
     int getBrightness() { return brightness; }
+    void showError(String message);
 
     // Get display pointer if needed elsewhere
     TFT_eSPI *getDisplay() { return display; }
