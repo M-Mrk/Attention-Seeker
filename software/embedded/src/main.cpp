@@ -12,6 +12,10 @@ DisplayManager displayManager;
 TimeScreen timeScreen;
 SettingsScreen settingsScreen;
 
+// Melody
+#include "MelodyManager.h"
+MelodyManager melodyManager;
+
 ESP32Time rtc(3600);
 
 // Input
@@ -47,6 +51,9 @@ void setup(void) {
   initInputs();
   startInputTasks(inputQueue);
 
+  // Melody
+  melodyManager.init(BUZZER_PIN);
+
   // Display
   displayManager.init();
   // register screens and select settings screen
@@ -66,6 +73,9 @@ void setup(void) {
   xTaskCreatePinnedToCore(aliveTask, "AliveTask", 2048, nullptr, 1, nullptr, 1);
 
   Serial.println("Attention Seeker initialized");
+  
+  // Play startup sound
+  melodyManager.playSuccess();
 }
 
 void loop() {}
