@@ -12,7 +12,7 @@ public:
 
   void init();
   void setLightLevel(int level);
-  int getLightLevel() const { return lightLevel; }
+  int getLightLevel();
 };
 
 extern LightManager lightManager;

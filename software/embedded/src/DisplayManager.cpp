@@ -175,6 +175,7 @@ void DisplayManager::showError(String message) {
   }
 }
 
+#include "LightManager.h"
 void DisplayManager::showMessage(String origin, String title, String message) {
   notificationActive = true;
   notificationExpiryMs = millis() + 5000; // auto-dismiss after 5s
@@ -208,6 +209,18 @@ void DisplayManager::showMessage(String origin, String title, String message) {
   display->setTextColor(0xFFFF);
   display->setCursor(14, 84);
   display->print(message);
+
+  LightManager lightManager;
+  int currentLightLevel = lightManager.getLightLevel();
+
+  for (int i = 0; i < 3; ++i) { // Blink light 3 times
+    lightManager.setLightLevel(currentLightLevel+50);
+    delay(150);
+    lightManager.setLightLevel(0);
+    delay(150);
+  }
+  delay(100);
+  lightManager.setLightLevel(currentLightLevel); // restore previous light level
 }
 
 void DisplayManager::clearNotification() {

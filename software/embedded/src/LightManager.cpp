@@ -18,4 +18,8 @@ void LightManager::setLightLevel(int level) {
   analogWrite(LED_PIN, lightLevel); // direct mapping: 0=off, 255=full
 }
 
+int LightManager::getLightLevel() {
+  return lightLevel;
+}
+
 LightManager lightManager;
