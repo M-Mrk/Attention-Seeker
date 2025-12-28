@@ -47,6 +47,9 @@ void setup(void) {
   initInputs();
   startInputTasks(inputQueue);
 
+  // Melody
+  melodyManager.init(BUZZER_PIN);
+
   // Display
   displayManager.init();
   // register screens and select settings screen
@@ -68,6 +71,9 @@ void setup(void) {
   usbHandler.startListening();
 
   Serial.println("Attention Seeker initialized");
+  
+  // Play startup sound
+  melodyManager.playSuccess();
 }
 
 void loop() {}
