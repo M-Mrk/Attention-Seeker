@@ -5,6 +5,8 @@
 
 // Display
 #include "DisplayManager.h"
+#include "LightManager.h"
+#include "MelodyManager.h"
 #include "UsbHandler.h"
 #include "screens/SettingsScreen.h"
 #include "screens/TimeScreen.h"
@@ -13,6 +15,8 @@ DisplayManager displayManager;
 TimeScreen timeScreen;
 SettingsScreen settingsScreen;
 ESP32Time rtc(3600);
+
+MelodyManager melodyManager;
 
 // Input
 #include "physicalInput.h"
@@ -50,6 +54,9 @@ void setup(void) {
   // Melody
   melodyManager.init(BUZZER_PIN);
 
+  // Light
+  lightManager.init();
+
   // Display
   displayManager.init();
   // register screens and select settings screen
@@ -71,9 +78,11 @@ void setup(void) {
   usbHandler.startListening();
 
   Serial.println("Attention Seeker initialized");
-  
+
   // Play startup sound
   melodyManager.playSuccess();
+
+  lightManager.setLightLevel(125); // set medium light level
 }
 
 void loop() {}

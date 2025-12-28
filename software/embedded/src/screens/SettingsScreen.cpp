@@ -3,6 +3,7 @@
 #include <ESP32Time.h>
 
 #include "DisplayManager.h"
+#include "LightManager.h"
 
 void SettingsScreen::init(TFT_eSPI *display) {
   display->fillScreen(0x0);
@@ -45,14 +46,14 @@ void SettingsScreen::draw(TFT_eSPI *display) {
         0x00, 0x0f, 0xf0, 0x00, 0x00, 0x0f, 0xf0, 0x00, 0x00, 0xff, 0xff, 0x00,
         0x00, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-    int brightness = displayManager.getBrightness();
-    brightness = map((brightness * -1), -255, 0, 0, 255);
+    int lightLevel = lightManager.getLightLevel();
+    int displayBrightness = displayManager.getBrightness();
 
-    int lightBarY = map(brightness, 0, 255, bottomYBar, topYBar);
-    int lightBarHeight = map(brightness, 0, 255, 0, 197);
+    int lightBarY = map(lightLevel, 0, 255, bottomYBar, topYBar);
+    int lightBarHeight = map(lightLevel, 0, 255, 0, 197);
 
-    int displayBarY = map(brightness, 0, 255, bottomYBar, topYBar);
-    int displayBarHeight = map(brightness, 0, 255, 0, 197);
+    int displayBarY = map(displayBrightness, 0, 255, bottomYBar, topYBar);
+    int displayBarHeight = map(displayBrightness, 0, 255, 0, 197);
 
     // Light level bar
     if (currentSelection == SettingsSelection::LightLevel) {
@@ -114,12 +115,10 @@ SettingsScreen::handleInput(InputEvent input) // TODO: implement SW1 to switch
       break;
 
     case InputEvent::RotaryCw:
-      if (currentSelection ==
-          SettingsSelection::LightLevel) { // TODO: replace with actual light
-                                           // level adjustment
-        int brightness = displayManager.getBrightness();
-        brightness -= changePerInput;
-        displayManager.setBrightness(brightness);
+      if (currentSelection == SettingsSelection::LightLevel) {
+        int lightLevel = lightManager.getLightLevel();
+        lightLevel -= changePerInput;
+        lightManager.setLightLevel(lightLevel);
       } else if (currentSelection == SettingsSelection::DisplayBrightness) {
         int brightness = displayManager.getBrightness();
         brightness -= changePerInput;
@@ -128,12 +127,10 @@ SettingsScreen::handleInput(InputEvent input) // TODO: implement SW1 to switch
       break;
 
     case InputEvent::RotaryCcw:
-      if (currentSelection ==
-          SettingsSelection::LightLevel) { // TODO: replace with actual light
-                                           // level adjustment
-        int brightness = displayManager.getBrightness();
-        brightness += changePerInput;
-        displayManager.setBrightness(brightness);
+      if (currentSelection == SettingsSelection::LightLevel) {
+        int lightLevel = lightManager.getLightLevel();
+        lightLevel += changePerInput;
+        lightManager.setLightLevel(lightLevel);
       } else if (currentSelection == SettingsSelection::DisplayBrightness) {
         int brightness = displayManager.getBrightness();
         brightness += changePerInput;
@@ -143,7 +140,7 @@ SettingsScreen::handleInput(InputEvent input) // TODO: implement SW1 to switch
 
     case InputEvent::SW1:
       if (currentSelection == SettingsSelection::LightLevel) {
-        displayManager.setBrightness(255); // reset light level
+        lightManager.setLightLevel(255); // reset light level
       } else if (currentSelection == SettingsSelection::DisplayBrightness) {
         displayManager.setBrightness(255); // reset display brightness
       }
