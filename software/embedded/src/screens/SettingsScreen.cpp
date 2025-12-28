@@ -86,7 +86,7 @@ void SettingsScreen::draw(TFT_eSPI *display) {
   }
 }
 
-constexpr int changePerInput = 5;
+constexpr int changePerInput = 15;
 InputEvent
 SettingsScreen::handleInput(InputEvent input) // TODO: implement SW1 to switch
                                               // between off and last setting
@@ -138,6 +138,14 @@ SettingsScreen::handleInput(InputEvent input) // TODO: implement SW1 to switch
         int brightness = displayManager.getBrightness();
         brightness += changePerInput;
         displayManager.setBrightness(brightness);
+      }
+      break;
+
+    case InputEvent::SW1:
+      if (currentSelection == SettingsSelection::LightLevel) {
+        displayManager.setBrightness(255); // reset light level
+      } else if (currentSelection == SettingsSelection::DisplayBrightness) {
+        displayManager.setBrightness(255); // reset display brightness
       }
       break;
 

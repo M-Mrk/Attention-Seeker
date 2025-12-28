@@ -78,7 +78,7 @@ void TimeScreen::updateTime() {
   lastDay = day;
   dateRedraw = true;
 
-  int month = rtc.getMonth();
+  int month = rtc.getMonth() + 1; // rtc months are 0-based
   int year = rtc.getYear();
 
   char dateBuffer[12];

@@ -6,3 +6,4 @@ PySide6_Addons==6.10.0
 PySide6_Essentials==6.10.0
 PyYAML==6.0.3
 shiboken6==6.10.0
+dbus-next==0.2.3

@@ -5,13 +5,13 @@
 
 // Display
 #include "DisplayManager.h"
+#include "UsbHandler.h"
 #include "screens/SettingsScreen.h"
 #include "screens/TimeScreen.h"
 
 DisplayManager displayManager;
 TimeScreen timeScreen;
 SettingsScreen settingsScreen;
-
 ESP32Time rtc(3600);
 
 // Input
@@ -39,7 +39,7 @@ void aliveTask(void *pvParameters) {
 QueueHandle_t inputQueue;
 
 void setup(void) {
-  Serial.begin(115200);
+  usbHandler.setup();
   Serial.println("Attention Seeker starting...");
 
   // Input
@@ -64,6 +64,8 @@ void setup(void) {
 
   // Alive Task
   xTaskCreatePinnedToCore(aliveTask, "AliveTask", 2048, nullptr, 1, nullptr, 1);
+
+  usbHandler.startListening();
 
   Serial.println("Attention Seeker initialized");
 }

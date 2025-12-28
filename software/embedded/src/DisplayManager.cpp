@@ -63,6 +63,13 @@ void DisplayManager::setScreen(int index) {
 }
 
 void DisplayManager::draw() {
+  if (notificationActive) {
+    if (notificationExpiryMs != 0 && millis() > notificationExpiryMs) {
+      clearNotification();
+    }
+    return; // keep notification visible until dismissed or timed out
+  }
+
   if (currentScreen != nullptr && !errorShown) {
     currentScreen->draw(display);
   }
@@ -70,6 +77,13 @@ void DisplayManager::draw() {
 
 // handle input event or switch screens
 void DisplayManager::handleInput(InputEvent event) {
+  if (notificationActive) {
+    if (event != InputEvent::NoneInput) {
+      clearNotification();
+    }
+    return;
+  }
+
   if (errorShown) {
     if (currentScreen != nullptr) {
       currentScreen->init(display); // re-initialize screen after error
@@ -101,7 +115,12 @@ void DisplayManager::setBrightness(int level) {
   brightness = level;
   analogWrite(BACKLIGHT_PIN, brightness);
 }
+
 void DisplayManager::showError(String message) {
+  playTone(900, 200);
+  delay(40);
+  playTone(600, 250);
+
   if (errorShown) {
     return; // already showing an error
   }
@@ -154,4 +173,55 @@ void DisplayManager::showError(String message) {
     message = message.substring(fitChars);
     message.trim();
   }
+}
+
+void DisplayManager::showMessage(String origin, String title, String message) {
+  notificationActive = true;
+  notificationExpiryMs = millis() + 5000; // auto-dismiss after 5s
+
+  playTone(1800, 70);
+  playTone(2000, 70);
+  playTone(1000, 70);
+  playTone(1500, 70);
+
+  display->fillScreen(0x0);
+
+  display->drawRect(8, 8, 304, 224, 0xE521);
+
+  display->drawLine(9, 38, 310, 38, 0xE521);
+
+  display->setTextColor(0xE521);
+  display->setTextWrap(false);
+  display->setFreeFont(&FreeSerif18pt7b);
+  display->setCursor(10, 34);
+  display->print(title);
+
+  display->drawLine(8, 59, 311, 59, 0xE521);
+
+  display->setFreeFont(&FreeSerif12pt7b);
+  display->setCursor(10, 56);
+  display->print("From:");
+
+  display->setCursor(73, 57);
+  display->print(origin);
+
+  display->setTextColor(0xFFFF);
+  display->setCursor(14, 84);
+  display->print(message);
+}
+
+void DisplayManager::clearNotification() {
+  notificationActive = false;
+  notificationExpiryMs = 0;
+
+  if (display != nullptr) {
+    display->fillScreen(0x0);
+  }
+
+  // Re-render current screen to restore UI
+  setScreen(currentScreenIndex);
+}
+
+void DisplayManager::playTone(uint16_t freq, uint16_t durationMs) {
+  tone(BUZZER_PIN, freq, durationMs);
 }
