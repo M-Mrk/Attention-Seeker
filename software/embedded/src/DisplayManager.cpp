@@ -4,6 +4,7 @@
 #include <TFT_eSPI.h>
 
 #include "Screen.h"
+#include "LightManager.h"
 #include "pins.h"
 
 DisplayManager::DisplayManager() {
@@ -175,7 +176,60 @@ void DisplayManager::showError(String message) {
   }
 }
 
-#include "LightManager.h"
+void DisplayManager::drawWrappedText(int16_t x, int16_t y, int16_t boxWidth,
+                                     int16_t boxHeight, String text) {
+  text.replace("\r", "");
+
+  const int lineHeight = display->fontHeight() + 4;
+  int cursorY = y;
+  int start = 0;
+
+  while (cursorY + lineHeight <= y + boxHeight && start <= text.length()) {
+    const int newlineIdx = text.indexOf('\n', start);
+    const int endIdx = newlineIdx >= 0 ? newlineIdx : text.length();
+    String segment = text.substring(start, endIdx);
+    const bool hasNewline = newlineIdx >= 0;
+
+    if (segment.length() == 0) {
+      cursorY += lineHeight;
+    } else {
+      while (segment.length() > 0 &&
+             cursorY + lineHeight <= y + boxHeight) {
+        int fitChars = segment.length();
+        while (fitChars > 0) {
+          const String candidate = segment.substring(0, fitChars);
+          if (display->textWidth(candidate) <= boxWidth)
+            break;
+          fitChars--;
+        }
+
+        if (fitChars == 0) {
+          return;
+        }
+
+        if (fitChars < segment.length()) {
+          const int lastSpace =
+              segment.substring(0, fitChars).lastIndexOf(' ');
+          if (lastSpace > 0)
+            fitChars = lastSpace;
+        }
+
+        const String line = segment.substring(0, fitChars);
+        display->setCursor(x, cursorY);
+        display->print(line);
+        segment = segment.substring(fitChars);
+        segment.trim();
+        cursorY += lineHeight;
+      }
+    }
+
+    if (!hasNewline) {
+      break;
+    }
+    start = newlineIdx + 1;
+  }
+}
+
 void DisplayManager::showMessage(String origin, String title, String message) {
   notificationActive = true;
   notificationExpiryMs = millis() + 5000; // auto-dismiss after 5s
@@ -193,22 +247,26 @@ void DisplayManager::showMessage(String origin, String title, String message) {
 
   display->setTextColor(0xE521);
   display->setTextWrap(false);
-  display->setFreeFont(&FreeSerif18pt7b);
+  display->setFreeFont(&FreeSerif12pt7b);
   display->setCursor(10, 34);
   display->print(title);
 
   display->drawLine(8, 59, 311, 59, 0xE521);
 
-  display->setFreeFont(&FreeSerif12pt7b);
+  display->setFreeFont(&FreeSerif9pt7b);
   display->setCursor(10, 56);
   display->print("From:");
 
   display->setCursor(73, 57);
   display->print(origin);
 
-  display->setTextColor(0xFFFF);
-  display->setCursor(14, 84);
-  display->print(message);
+  display->setTextWrap(false);
+  display->setFreeFont(&FreeSerif9pt7b);
+  const int textX = 14;
+  const int textY = 84;
+  const int textWidth = display->width() - textX - 10;
+  const int textHeight = display->height() - textY - 12;
+  drawWrappedText(textX, textY, textWidth, textHeight, message);
 
   LightManager lightManager;
   int currentLightLevel = lightManager.getLightLevel();

@@ -8,11 +8,13 @@
 #include "LightManager.h"
 #include "MelodyManager.h"
 #include "UsbHandler.h"
+#include "screens/HotkeyScreen.h"
 #include "screens/SettingsScreen.h"
 #include "screens/TimeScreen.h"
 
 DisplayManager displayManager;
 TimeScreen timeScreen;
+HotkeyScreen hotkeyScreen;
 SettingsScreen settingsScreen;
 ESP32Time rtc(3600);
 
@@ -31,13 +33,6 @@ void displayDrawTask(void *pvParameters) {
     displayManager.draw();
     vTaskDelay(pdMS_TO_TICKS(16)); // Approx ~60 FPS
   };
-};
-
-void aliveTask(void *pvParameters) {
-  for (;;) {
-    Serial.println("Alive");
-    vTaskDelay(pdMS_TO_TICKS(5000));
-  }
 };
 
 QueueHandle_t inputQueue;
@@ -61,7 +56,8 @@ void setup(void) {
   displayManager.init();
   // register screens and select settings screen
   displayManager.registerScreen(&timeScreen, 0);
-  displayManager.registerScreen(&settingsScreen, 1);
+  displayManager.registerScreen(&hotkeyScreen, 1);
+  displayManager.registerScreen(&settingsScreen, 2);
   // use registered index for initial screen (if registration failed idxSettings
   // may be -1)
   displayManager.setScreen(0);
@@ -71,9 +67,6 @@ void setup(void) {
   // RTC
   rtc.setTime(30, 24, 15, 17, 1, 2021); // 15:24:30 17.01.2021
   // TODO: remember time somehow across reboots
-
-  // Alive Task
-  xTaskCreatePinnedToCore(aliveTask, "AliveTask", 2048, nullptr, 1, nullptr, 1);
 
   usbHandler.startListening();
 

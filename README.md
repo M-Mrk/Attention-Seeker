@@ -4,7 +4,7 @@ A multifunctional desk peripheral designed to display and alert you to notificat
 
 Attention-Seeker receives notifications from a companion app and displays them on its 2.8" color screen, with optional visual and audible alerts. It also features a rotary encoder and three mechanical keyboard switches for user input (no touch!).
 
-In addition to notification-related features, it functions as a **clock**, **alarm**, **timer**, **desk light**, and **macropad**.
+In addition to notification-related features, it functions as a **clock**, **desk light**, and **macropad**.
 
 ![Front View](pcb/pictures/front.png) ![Semi-Assembled](case/complete.png)
 
@@ -22,19 +22,27 @@ I often missed important notifications while zoning out or concentrating and als
 
 ### Example Use Cases
 - **Notification:** Attention-Seeker buzzes, blinks, and displays the message.
-- **Reminder:** Set a timer for X minutes, and it alerts you when time is up.
 - **Desk Light:** Toggle and dim the built-in LED for illumination.
+
+
 
 ## Features
 
 ### Notifications
 Displays incoming notifications sent by the companion app with optional blinking or buzzing.
 
+<img src="images/notification.jpeg" width="512">
+
 ### Clock
 - Displays time
-- Timer functionality
-- Alarm support
 - Synced via the companion app
+
+<img src="images/time.jpeg" width="512">
+
+### Macropad
+- 6 hotkeys
+
+<img src="images/hotkey.jpeg" width="512">
 
 ### Navigation
 - Mechanical keyboard switches for on-page actions
@@ -59,18 +67,3 @@ The backlight's current draw was uncertain during PCB design, so a transistor wa
 
 ### Other Components
 All remaining components (switches, encoder, buzzer) are directly connected to the MCU.
-
-# Getting started
-## Assembly
-Take a look at the [assembly guide](assembly.md)
-
-## Installation
-Install the companion app from the releases section ([guide](companion.md)).
-
-# To-Do List
-
-## Embedded Software
-- None yet.
-
-## Companion App
-- No Linux/KDE or Windows companion app is available yet.

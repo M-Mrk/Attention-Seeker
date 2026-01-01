@@ -12,9 +12,19 @@
 static TaskHandle_t usbListenTaskHandle = nullptr;
 UsbHandler usbHandler;
 static USBHIDKeyboard hidKeyboard;
+static bool serialActive = false;
+static bool hidActive = false;
+static bool listenerSuspended = false;
+static bool usbInitialized = false;
 
-static bool extractStringField(const String &json, const char *key,
-                               String &out) {
+static void normalizeNewlines(String &text) {
+  text.replace("\\r\\n", "\n");
+  text.replace("\\n", "\n");
+  text.replace("\\r", "\n");
+  text.replace("\r", "\n");
+}
+
+static bool extractStringField(const String &json, const char *key, String &out) {
   const String pattern = "\"" + String(key) + "\"";
   const int keyPos = json.indexOf(pattern);
   if (keyPos < 0)
@@ -64,6 +74,8 @@ static void handleNotification(const String &json) {
   extractStringField(json, "origin", origin);
   extractStringField(json, "title", title);
   extractStringField(json, "body", body);
+
+  normalizeNewlines(body);
 
   if (origin.isEmpty())
     origin = "Unknown";
@@ -115,8 +127,64 @@ static void usbListenTask(void *pvParameters) {
   }
 }
 
+static void suspendUsbListenTask() {
+  if (usbListenTaskHandle != nullptr && !listenerSuspended) {
+    vTaskSuspend(usbListenTaskHandle);
+    listenerSuspended = true;
+  }
+}
+
+static void resumeUsbListenTask() {
+  if (usbListenTaskHandle != nullptr && listenerSuspended) {
+    vTaskResume(usbListenTaskHandle);
+    listenerSuspended = false;
+  }
+}
+
+static void startHidMode() {
+  suspendUsbListenTask();
+
+  if (serialActive) {
+    Serial.end();
+    serialActive = false;
+    delay(50); // give USB stack time to stop CDC
+  }
+
+  if (!hidActive) {
+    if (!usbInitialized) {
+      USB.begin();
+      usbInitialized = true;
+      delay(50); // allow host to enumerate USB device
+    }
+
+    hidKeyboard.begin();
+    hidActive = true;
+    delay(10);
+  }
+}
+
+static void stopHidStartSerial() {
+  if (hidActive) {
+    hidActive = false;
+    delay(10);
+  }
+
+  if (!serialActive) {
+    Serial.begin(115200);
+    serialActive = true;
+
+    uint32_t start = millis();
+    while (!Serial && (millis() - start) < 2000) {
+      delay(10);
+    }
+  }
+
+  resumeUsbListenTask();
+}
+
 void UsbHandler::setup() {
   Serial.begin(115200);
+  serialActive = true;
   //   hidKeyboard.begin();
   //   USB.begin();
 
@@ -140,4 +208,15 @@ void UsbHandler::startListening() {
     Serial.println("USB: failed to start listen task");
     usbListenTaskHandle = nullptr;
   }
+}
+
+void UsbHandler::sendKey(char key) {
+  startHidMode();
+
+  hidKeyboard.press(static_cast<uint8_t>(key));
+  delay(5);
+  hidKeyboard.releaseAll();
+  delay(5);
+
+  stopHidStartSerial();
 }

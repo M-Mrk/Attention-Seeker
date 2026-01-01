@@ -9,7 +9,7 @@ private:
   TFT_eSPI *display;
   Screen *currentScreen;
   int currentScreenIndex;
-  static const int MAX_SCREENS = 2;
+  static const int MAX_SCREENS = 3;
   Screen *screens[MAX_SCREENS];
   int brightness;
   bool errorShown = false;
@@ -18,6 +18,8 @@ private:
 
   void clearNotification();
   void playTone(uint16_t freq, uint16_t durationMs);
+  void drawWrappedText(int16_t x, int16_t y, int16_t boxWidth,
+                       int16_t boxHeight, String text);
 
 public:
   DisplayManager();

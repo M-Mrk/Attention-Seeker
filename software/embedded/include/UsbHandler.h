@@ -5,6 +5,7 @@ class UsbHandler {
 public:
     void setup();
     void startListening();
+    void sendKey(char key);
 };
 
 extern UsbHandler usbHandler;
